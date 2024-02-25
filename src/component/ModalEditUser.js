@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { postCreateUser, putUpdateUser } from '../services/UserService'
+import { putUpdateUser } from '../services/UserService'
 import { toast } from 'react-toastify';
 
 
@@ -43,20 +43,20 @@ const ModalEditUser = (props) => {
                     <div className='body-add-new'>
                         <div>
                             <form>
-                                <div class="mb-3">
+                                <div className="mb-3">
                                     <label className="form-label">Name</label>
                                     <input
                                         type="text"
-                                        class="form-control"
+                                        className="form-control"
                                         value={name}
                                         onChange={(event) => setName(event.target.value)}
                                     />
                                 </div>
-                                <div class="mb-3">
+                                <div className="mb-3">
                                     <label className="form-label">Job</label>
                                     <input
                                         type="text"
-                                        class="form-control"
+                                        className="form-control"
                                         value={job}
                                         onChange={(event) => setJob(event.target.value)}
 

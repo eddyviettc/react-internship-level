@@ -37,7 +37,7 @@ const Header = (props) => {
                         className="d-inline-block align-top"
                         alt="React Bootstrap logo"
                     />
-                    <span>Reverie's App</span>
+                    <span role="button" onClick={() => navigate("/")}>Reverie's App</span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
