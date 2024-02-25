@@ -2,8 +2,13 @@ import { useEffect, useState } from "react"
 import { loginApi } from "../services/UserService"
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
+
 
 const Login = () => {
+
+    const { loginContext } = useContext(UserContext);
 
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
@@ -31,16 +36,17 @@ const Login = () => {
         setLoadingApi(true)
         let res = await loginApi(email, password)
         if (res && res.token) {
-
-            localStorage.setItem("token", res.token)
+            loginContext(email, res.token);
             navigate("/");
-
-
         } else {
             if (res && res.status === 400) {
                 toast.error(res.data.error)
             }
         } setLoadingApi(false)
+
+    }
+    const handleGoBack = () => {
+        navigate("/");
 
     }
 
@@ -58,7 +64,7 @@ const Login = () => {
                 />
                 <div className="input-password">
                     <input
-                        type={isShowPassword === true ? "password" : "text"}
+                        type={isShowPassword === false ? "password" : "text"}
                         placeholder="Password"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
@@ -81,7 +87,8 @@ const Login = () => {
                 <div className="back">
                     <i class="fa-solid fa-chevron-left mx-1">
                     </i>
-                    Go back
+
+                    <span onClick={() => handleGoBack()}>   &nbsp;Go back</span>
                 </div>
 
             </div>
